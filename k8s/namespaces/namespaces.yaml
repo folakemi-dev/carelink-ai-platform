@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: carelink-dev
+  labels:
+    environment: development
+    project: carelink-ai
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: carelink-staging
+  labels:
+    environment: staging
+    project: carelink-ai
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: carelink-prod
+  labels:
+    environment: production
+    project: carelink-ai
