@@ -1,0 +1,73 @@
+namespace: carelink-dev
+
+project: carelink-ai
+environment: development
+
+services:
+  frontend:
+    name: frontend
+    image: carelink-frontend:1.0.0
+    containerPort: 80
+    replicas: 2
+    maxReplicas: 4
+    cpuTarget: 60
+
+  apiGateway:
+    name: api-gateway
+    image: carelink-api-gateway:1.1.0
+    containerPort: 8000
+    replicas: 2
+    maxReplicas: 5
+    cpuTarget: 60
+
+  authService:
+    name: auth-service
+    image: carelink-auth-service:1.0.0
+    containerPort: 8001
+    replicas: 2
+    maxReplicas: 5
+    cpuTarget: 60
+
+  patientService:
+    name: patient-service
+    image: carelink-patient-service:1.0.0
+    containerPort: 8002
+    replicas: 2
+    maxReplicas: 5
+    cpuTarget: 60
+
+  appointmentService:
+    name: appointment-service
+    image: carelink-appointment-service:1.0.0
+    containerPort: 8003
+    replicas: 2
+    maxReplicas: 5
+    cpuTarget: 60
+
+  notificationService:
+    name: notification-service
+    image: carelink-notification-service:1.0.0
+    containerPort: 8004
+    replicas: 2
+    maxReplicas: 5
+    cpuTarget: 60
+
+  aiService:
+    name: ai-service
+    image: carelink-ai-service:1.0.0
+    containerPort: 8005
+    replicas: 2
+    maxReplicas: 5
+    cpuTarget: 60
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "300m"
+    memory: "256Mi"
+
+ingress:
+  enabled: true
+  className: nginx
