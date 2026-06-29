@@ -35,6 +35,15 @@ pipeline {
                 sh 'helm template carelink-jenkins helm/carelink'
             }
         }
+
+        stage('Security Scan') {
+            steps {
+                sh '''
+                    trivy fs --severity HIGH,CRITICAL --exit-code 0 .
+                    trivy config --severity HIGH,CRITICAL --exit-code 0 .
+                '''
+            }
+        }
     }
 
     post {
