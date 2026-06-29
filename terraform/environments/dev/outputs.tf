@@ -13,17 +13,17 @@ output "jenkins_security_group_id" {
   value       = module.security_groups.jenkins_security_group_id
 }
 
-output "jenkins_instance_id" {
-  description = "Jenkins EC2 instance ID"
-  value       = module.jenkins.instance_id
-}
-
 output "jenkins_public_ip" {
-  description = "Jenkins server public IP address"
-  value       = module.jenkins.public_ip
+  description = "Public IP address of the Jenkins server"
+  value       = module.jenkins.jenkins_public_ip
 }
 
 output "jenkins_url" {
   description = "Jenkins web URL"
   value       = module.jenkins.jenkins_url
+}
+
+output "ecr_repository_urls" {
+  description = "ECR repository URLs for CareLink services"
+  value       = module.ecr.repository_urls
 }

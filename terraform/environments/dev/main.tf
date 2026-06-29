@@ -26,3 +26,20 @@ module "jenkins" {
   security_group_id = module.security_groups.jenkins_security_group_id
   key_name          = var.key_name
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  repositories = [
+    "frontend",
+    "api-gateway",
+    "auth-service",
+    "patient-service",
+    "appointment-service",
+    "notification-service",
+    "ai-service"
+  ]
+}
