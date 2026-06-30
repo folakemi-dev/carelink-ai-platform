@@ -34,3 +34,8 @@ variable "root_volume_size" {
   type        = number
   default     = 20
 }
+
+variable "iam_instance_profile" {
+  description = "IAM instance profile name attached to Jenkins EC2"
+  type        = string
+}

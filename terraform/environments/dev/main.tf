@@ -17,14 +17,22 @@ module "security_groups" {
   allowed_jenkins_cidr = var.allowed_jenkins_cidr
 }
 
+module "iam" {
+  source = "../../modules/iam"
+
+  project_name = var.project_name
+  environment  = var.environment
+}
+
 module "jenkins" {
   source = "../../modules/jenkins"
 
-  project_name      = var.project_name
-  environment       = var.environment
-  subnet_id         = module.vpc.public_subnet_id
-  security_group_id = module.security_groups.jenkins_security_group_id
-  key_name          = var.key_name
+  project_name         = var.project_name
+  environment          = var.environment
+  subnet_id            = module.vpc.public_subnet_id
+  security_group_id    = module.security_groups.jenkins_security_group_id
+  key_name             = var.key_name
+  iam_instance_profile = module.iam.jenkins_instance_profile_name
 }
 
 module "ecr" {
