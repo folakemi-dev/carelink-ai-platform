@@ -27,3 +27,23 @@ output "ecr_repository_urls" {
   description = "ECR repository URLs for CareLink services"
   value       = module.ecr.repository_urls
 }
+
+output "eks_public_subnet_ids" {
+  description = "Public subnet IDs for EKS worker nodes"
+  value       = module.vpc.eks_public_subnet_ids
+}
+
+output "eks_cluster_name" {
+  description = "EKS cluster name"
+  value       = module.eks.cluster_name
+}
+
+output "eks_cluster_endpoint" {
+  description = "EKS cluster endpoint"
+  value       = module.eks.cluster_endpoint
+}
+
+output "eks_node_group_name" {
+  description = "EKS managed node group name"
+  value       = module.eks.node_group_name
+}

@@ -1,10 +1,11 @@
 module "vpc" {
   source = "../../modules/vpc"
 
-  project_name       = var.project_name
-  environment        = var.environment
-  vpc_cidr           = var.vpc_cidr
-  public_subnet_cidr = var.public_subnet_cidr
+  project_name            = var.project_name
+  environment             = var.environment
+  vpc_cidr                = var.vpc_cidr
+  public_subnet_cidr      = var.public_subnet_cidr
+  eks_public_subnet_cidrs = var.eks_public_subnet_cidrs
 }
 
 module "security_groups" {
@@ -50,4 +51,16 @@ module "ecr" {
     "notification-service",
     "ai-service"
   ]
+}
+
+module "eks" {
+  source = "../../modules/eks"
+
+  project_name        = var.project_name
+  environment         = var.environment
+  subnet_ids          = module.vpc.eks_public_subnet_ids
+  node_instance_types = var.eks_node_instance_types
+  node_desired_size   = var.eks_node_desired_size
+  node_min_size       = var.eks_node_min_size
+  node_max_size       = var.eks_node_max_size
 }

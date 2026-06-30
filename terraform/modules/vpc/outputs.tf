@@ -4,6 +4,11 @@ output "vpc_id" {
 }
 
 output "public_subnet_id" {
-  description = "ID of the public subnet"
+  description = "ID of the Jenkins public subnet"
   value       = aws_subnet.public.id
+}
+
+output "eks_public_subnet_ids" {
+  description = "IDs of the EKS public subnets"
+  value       = aws_subnet.eks_public[*].id
 }

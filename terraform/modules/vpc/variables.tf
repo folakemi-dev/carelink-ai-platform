@@ -14,6 +14,11 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnet_cidr" {
-  description = "CIDR block for the public subnet"
+  description = "CIDR block for the Jenkins public subnet"
   type        = string
+}
+
+variable "eks_public_subnet_cidrs" {
+  description = "CIDR blocks for EKS public subnets"
+  type        = list(string)
 }

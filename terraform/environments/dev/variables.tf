@@ -19,8 +19,13 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnet_cidr" {
-  description = "CIDR block for the public subnet"
+  description = "CIDR block for the Jenkins public subnet"
   type        = string
+}
+
+variable "eks_public_subnet_cidrs" {
+  description = "CIDR blocks for EKS public subnets"
+  type        = list(string)
 }
 
 variable "key_name" {
@@ -36,4 +41,24 @@ variable "allowed_ssh_cidr" {
 variable "allowed_jenkins_cidr" {
   description = "Your public IP address in CIDR format for Jenkins web access"
   type        = string
+}
+
+variable "eks_node_instance_types" {
+  description = "EC2 instance types for EKS worker nodes"
+  type        = list(string)
+}
+
+variable "eks_node_desired_size" {
+  description = "Desired number of EKS worker nodes"
+  type        = number
+}
+
+variable "eks_node_min_size" {
+  description = "Minimum number of EKS worker nodes"
+  type        = number
+}
+
+variable "eks_node_max_size" {
+  description = "Maximum number of EKS worker nodes"
+  type        = number
 }
