@@ -1,0 +1,73 @@
+namespace: carelink-dev
+
+project: carelink-ai
+environment: eks-dev
+
+services:
+  frontend:
+    name: frontend
+    image: 593696434222.dkr.ecr.us-east-2.amazonaws.com/carelink-ai/frontend:latest
+    containerPort: 80
+    replicas: 1
+    maxReplicas: 2
+    cpuTarget: 60
+
+  apiGateway:
+    name: api-gateway
+    image: 593696434222.dkr.ecr.us-east-2.amazonaws.com/carelink-ai/api-gateway:latest
+    containerPort: 8000
+    replicas: 1
+    maxReplicas: 2
+    cpuTarget: 60
+
+  authService:
+    name: auth-service
+    image: 593696434222.dkr.ecr.us-east-2.amazonaws.com/carelink-ai/auth-service:latest
+    containerPort: 8001
+    replicas: 1
+    maxReplicas: 2
+    cpuTarget: 60
+
+  patientService:
+    name: patient-service
+    image: 593696434222.dkr.ecr.us-east-2.amazonaws.com/carelink-ai/patient-service:latest
+    containerPort: 8002
+    replicas: 1
+    maxReplicas: 2
+    cpuTarget: 60
+
+  appointmentService:
+    name: appointment-service
+    image: 593696434222.dkr.ecr.us-east-2.amazonaws.com/carelink-ai/appointment-service:latest
+    containerPort: 8003
+    replicas: 1
+    maxReplicas: 2
+    cpuTarget: 60
+
+  notificationService:
+    name: notification-service
+    image: 593696434222.dkr.ecr.us-east-2.amazonaws.com/carelink-ai/notification-service:latest
+    containerPort: 8004
+    replicas: 1
+    maxReplicas: 2
+    cpuTarget: 60
+
+  aiService:
+    name: ai-service
+    image: 593696434222.dkr.ecr.us-east-2.amazonaws.com/carelink-ai/ai-service:latest
+    containerPort: 8005
+    replicas: 1
+    maxReplicas: 2
+    cpuTarget: 60
+
+resources:
+  requests:
+    cpu: "75m"
+    memory: "96Mi"
+  limits:
+    cpu: "250m"
+    memory: "256Mi"
+
+ingress:
+  enabled: false
+  className: nginx
